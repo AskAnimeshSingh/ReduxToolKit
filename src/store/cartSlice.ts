@@ -22,9 +22,16 @@ const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<Product>) => {
       state.items.push(action.payload);
     },
+    // removeFromCart: (state, action: PayloadAction<number>) => {
+    //   state.items = state.items.filter(item => item.id !== action.payload);
+    // },
     removeFromCart: (state, action: PayloadAction<number>) => {
-      state.items = state.items.filter(item => item.id !== action.payload);
-    },
+  const index = state.items.findIndex(item => item.id === action.payload);
+  if (index !== -1) {
+    state.items.splice(index, 1); // Remove only the first occurrence
+  }
+}
+
   },
 });
 
